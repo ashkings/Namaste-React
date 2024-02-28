@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import RestaurantCard from "./RestaurantCard";
 import { List } from "react-content-loader";
+import RestaurantCard from "./RestaurantCard";
 import useRestaurantsList from "../utils/useRestaurantsList";
-import "../assets/css/restaurant.css";
 
 const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
