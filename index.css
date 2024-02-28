@@ -1,48 +1,50 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid black;
+body {
+  background-color: rgb(255, 255, 255);
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Lucida Grande, Helvetica, Arial, sans-serif;
 }
 
-.logo{
-    width: 100px;
+.d-f {
+  display: flex;
 }
 
-.nav-items > ul{
-    display: flex;
-    font-size: 14px;
-    list-style: none;
+.ai-c {
+  align-items: center;
 }
 
-.nav-items > ul > li{
-    padding: 10px;
-    margin: 10px;
+.fd-col{
+    flex-direction: column;
 }
 
-.res-container{
-    display: flex;
-    flex-wrap: wrap;
+.gap-8 {
+  gap: 8px;
 }
 
-.res-card{
-    width: 200px;
-    background-color: #f0f0f0;
-    padding: 5px;
-    margin: 5px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.res-card:hover{
-    border: 1px solid black;
-    cursor: pointer;
+.logo {
+  width: 50px;
+  height: 50px;
 }
 
-.filter-search{
-    display: flex;
-    padding: 10px 10px 10px 0px;
-    gap: 16px;
+.nav-items > ul {
+  display: flex;
+  font-size: 14px;
+  list-style: none;
 }
 
+.nav-items > ul > li {
+  padding: 10px;
+  margin: 10px;
+}
 
-.res-logo{
-    width: 100%;
+a {
+  text-decoration: none;
+  color: unset;
 }
