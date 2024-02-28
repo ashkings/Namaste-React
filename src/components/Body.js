@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
+import { List } from "react-content-loader";
+import useRestaurantsList from "../utils/useRestaurantsList";
+import "../assets/css/restaurant.css";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchVal, setSearchVal] = useState("");
 
+  const { loading, resInfo: listOfRestaurants } = useRestaurantsList();
+
   useEffect(() => {
-    fetchData();
-  }, []);
+    setFilteredList(listOfRestaurants);
+  }, [listOfRestaurants]);
 
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9583852&lng=77.643915&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    const list =
-      json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setListOfRestaurants(list);
-    setFilteredList(list);
-  };
-
-  return (
+  return loading ? (
+    <List />
+  ) : (
     <div className="body">
       <div className="filter-search">
         <div className="search">
@@ -64,10 +59,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredList?.map((restaurant) => (
-          <RestaurantCard
+          <Link
             key={restaurant?.info?.id}
-            resData={restaurant?.info}
-          />
+            to={`/restaurants/${restaurant?.info?.id}`}
+          >
+            <RestaurantCard resData={restaurant?.info} />
+          </Link>
         ))}
       </div>
     </div>
