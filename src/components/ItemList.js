@@ -1,7 +1,18 @@
 import React from "react";
 import { CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem, removeItem } from "../utils/redux/cartSlice";
 
 function ItemList({ items }) {
+  const dispatch = useDispatch();
+  const handleAddToCart = (item) => {
+    dispatch(addItem(item));
+  };
+
+  const handleRemoveFromCart = (item) => {
+    dispatch(removeItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -21,10 +32,19 @@ function ItemList({ items }) {
             </div>
             <p className="text-xs">{item?.card?.info?.description}</p>
           </div>
+
           <div className="w-3/12 p-4 rounded-sm">
             <img src={CDN_URL + item?.card?.info?.imageId} className="w-full" />
             <button className="relative bottom-4 left-[50%] translate-x-[-50%] px-2 py-1 bg-black text-white shadow-lg  rounded-lg">
-              Add +
+              {item.quantity ? (
+                <div className="flex gap-4 items-center">
+                  <div onClick={() => handleRemoveFromCart(item)}>-</div>
+                  <div>{item.quantity}</div>
+                  <div onClick={() => handleAddToCart(item)}>+</div>
+                </div>
+              ) : (
+                <div onClick={() => handleAddToCart(item)}>Add</div>
+              )}
             </button>
           </div>
         </div>

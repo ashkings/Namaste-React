@@ -19,3 +19,12 @@
 - A way to host on HTTPS
 - Tree Shaking - remove unused code
 - Different dev and prod bundles
+
+# Redux
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to app
+- Create a slice
+- dispatch(action)
+- Selector
