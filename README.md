@@ -28,3 +28,17 @@
 - Create a slice
 - dispatch(action)
 - Selector
+
+# Testing for developer
+
+- Unit testing
+- Integration testing
+- e2e (end to end) testing
+
+# Setting up testing
+
+- Install React testing library
+- Install Jest
+- Install bable dependencies
+- Confifure babel
+- Configure Parcel to disable default babel transpilation
