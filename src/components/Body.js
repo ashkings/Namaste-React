@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { List } from "react-content-loader";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOpenLabel } from "./RestaurantCard";
 import useRestaurantsList from "../utils/useRestaurantsList";
 
 const Body = () => {
@@ -9,6 +9,8 @@ const Body = () => {
   const [searchVal, setSearchVal] = useState("");
 
   const { loading, resInfo: listOfRestaurants } = useRestaurantsList();
+
+  const RestaurantCardOpen = withOpenLabel(RestaurantCard);
 
   useEffect(() => {
     setFilteredList(listOfRestaurants);
@@ -18,15 +20,16 @@ const Body = () => {
     <List />
   ) : (
     <div className="body">
-      <div className="filter-search">
-        <div className="search">
+      <div className="flex items-center">
+        <div className="search p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchVal}
             onChange={(e) => setSearchVal(e.target.value)}
           />
           <button
+            className="px-4 py-1 m-4 bg-green-100 rounded-lg"
             onClick={() => {
               if (searchVal) {
                 const filterList = listOfRestaurants.filter((restaurant) =>
@@ -43,7 +46,7 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div className="filter">
+        <div className="px-4 py-1 m-4 bg-gray-100 rounded-lg">
           <button
             onClick={() => {
               const filterList = listOfRestaurants.filter(
@@ -56,13 +59,17 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredList?.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
             to={`/restaurants/${restaurant?.info?.id}`}
           >
-            <RestaurantCard resData={restaurant?.info} />
+            {restaurant?.info?.isOpen ? (
+              <RestaurantCardOpen resData={restaurant?.info} />
+            ) : (
+              <RestaurantCard resData={restaurant?.info} />
+            )}
           </Link>
         ))}
       </div>
