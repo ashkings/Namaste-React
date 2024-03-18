@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { LOGO_URL } from "../utils/constants";
 import { useSelector } from "react-redux";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import { LOGO_URL } from "../utils/constants";
 
 const Header = () => {
+  const [login, setLogin] = useState(true);
+  const onlineStatus = useOnlineStatus();
   // Subscribing to the store using Selector
   const cart = useSelector((store) => store.cart);
   return (
@@ -14,6 +17,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="flex items-center">
+        <span>Online Status: {onlineStatus ? "✅" : "🔴"}</span>
         <ul className="flex p-4 m-4">
           <li className="px-4">
             <Link to="/">Home</Link>
@@ -25,9 +29,15 @@ const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
           <li className="px-4 font-bold text-xl">
-            <Link to="/cart">Cart ({cart.items.length})</Link>
+            <Link to="/cart">Cart - ({cart.items.length} items)</Link>
           </li>
         </ul>
+        <button
+          className="px-4 font-bold text-xl"
+          onClick={() => setLogin(!login)}
+        >
+          {login ? "Login" : "Logout"}
+        </button>
       </div>
     </div>
   );
