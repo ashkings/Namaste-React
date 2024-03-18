@@ -1,5 +1,4 @@
 import React from "react";
-import Ellipses from "./common/Ellipses";
 import { CDN_URL } from "../utils/constants";
 import star from "../assets/icons/star.svg";
 
