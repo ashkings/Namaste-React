@@ -175,6 +175,9 @@ const config = {
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,
+  moduleNameMapper: {
+    "^.+\\.svg$": "jest-svg-transformer",
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
