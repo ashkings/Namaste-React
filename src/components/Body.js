@@ -16,14 +16,15 @@ const Body = () => {
     setFilteredList(listOfRestaurants);
   }, [listOfRestaurants]);
 
-  return loading ? (
-    <List />
-  ) : (
+  if (loading) return <List />;
+
+  return (
     <div className="body">
       <div className="flex items-center">
         <div className="search p-4">
           <input
             type="text"
+            data-testid="searchInput"
             className="border border-solid border-black"
             value={searchVal}
             onChange={(e) => setSearchVal(e.target.value)}
